@@ -1,0 +1,120 @@
+import java.util.*;
+class main{
+public static void main(String[]args){
+int g,h=0,x,mn=0;
+int k=0;
+int hj=0;
+String s="011111111110";
+int y,count=0,count1=0,r=0;
+y=s.length();
+
+char a[]=new char[y];
+for(int i=0;i<(y);i++){
+a[i]=s.charAt(i);
+
+}
+
+for(int i=0;i<(y);i++){
+if(a[i]=='0'){
+mn=mn+1;
+}
+
+}
+if(mn==0){
+System.out.println("no need of bit stuffing ");
+System.out.println("final data is");
+for(int i=0;i<(y);i++){
+a[i]=s.charAt(i);
+
+System.out.print(a[i]);
+}}
+else{
+
+for(int i=0;i<(y);i++){
+if(a[i]=='1'){
+count=count+1;
+if(count==5){
+count=0;
+r=r+1;
+System.out.println("insert bit at "+(i+1));
+}
+
+}
+else{
+count=0;
+}}
+count1=y+r;
+System.out.println(" size "+count1);
+char a1[]=new char[count1];
+
+
+if(r==0){
+x=count1+1;
+System.out.println("no need of bit stuffing ");
+for(int i=0;i<(y);i++){
+a[i]=s.charAt(i);
+
+System.out.print(a[i]);
+}
+}
+if(r==1){
+Scanner sc=new Scanner(System.in);
+
+System.out.print("\nenter bit position for bit stuffing\n");
+x=sc.nextInt();
+for( g=h;g<(count1);g++){
+
+if(g==x){
+a1[g]='0';
+
+System.out.print(a1[g]);
+
+}
+else{
+a1[g]=a[k];
+k=k+1;
+System.out.print(a1[g]);
+}}
+}
+if(r>1){
+for(int z=0;z<r;z++){
+Scanner sc=new Scanner(System.in);
+System.out.print("\nenter bit position for bit stuffing\n");
+x=sc.nextInt();
+//System.out.print("h value "+h);
+for( g=h;g<(count1);g++){
+
+if(g==x){
+a1[g]='0';
+h=g;
+System.out.print(a1[g]);
+break;
+}
+else{
+a1[g]=a[k];
+k=k+1;
+System.out.print(a1[g]);
+}}
+}
+}
+/*else{
+Scanner sc=new Scanner(System.in);
+System.out.println("enter bit position for bit stuffing");
+x=sc.nextInt();}*/
+
+/*for( g=h;g<(count1);g++){
+
+if(g==x){
+a1[g]='0';
+
+System.out.print(a1[g]);
+
+}
+else{
+a1[g]=a[k];
+k=k+1;
+System.out.print(a1[g]);
+}}*/
+}}}
+/*if r>1 use break in line 64 and use  
+see this case 0111110*/

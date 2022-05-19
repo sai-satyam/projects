@@ -1,0 +1,26 @@
+global count
+l=[]
+count=1
+r=int(input("enter range "))
+o=int(input("enter option "))
+while(o<3):			
+ if(o==0):
+  if((count<=r)):
+     e=int(input("enter element "))
+     l.append(e)		
+     count=count+1		
+  else:					
+    print("over flow")				
+    o=int(input("enter option "))
+ if(o==1):					
+   try:						
+     l.reverse()						
+     l.pop(0)						
+     l.reverse()						
+     count=count-1					
+   except:						
+     print("under flow")					
+     o=int(input("enter option "))			
+ if(o==2):			
+	print(l)					
+        o=int(input("enter option "))											global countl=[]count=1r=int(input("enter range "))o=int(input("enter option "))while(o<3):			if(o==0):				if((count<=r)):					e=int(input("enter element "))					l.append(e)					#print("count",count)					count=count+1				else:					print("over flow")				o=int(input("enter option "))			if(o==1):					try:						l.reverse()						l.pop(0)						l.reverse()						count=count-1					except:						print("under flow")					o=int(input("enter option "))			if(o==2):				#for i in range():					print(l)					o=int(input("enter option "))																									

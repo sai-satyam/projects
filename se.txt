@@ -1,0 +1,139 @@
+
+\documentclass[12pt, portrait, oneside]{article}
+\usepackage{ragged2e}
+\usepackage[margin=1in]{geometry}
+\begin{document}
+
+\underline{\textbf{\huge SOFTWARE ENGINEERING\huge}}
+\centering
+ \bigbreak
+  \bigbreak
+   \bigbreak
+\underline{\textbf{\huge ASSIGNMENT -1\huge}}
+\bigbreak
+ \bigbreak
+  \bigbreak
+   
+\begin{raggedright}
+\underline{\textbf{\large by 20VV1A1206  \large}}
+\end{raggedright}
+\underline{\textbf{\large BAGADI SAI SATYAM \large}}
+
+\newpage
+\begin{raggedright}
+\section{WHAT IS A MODEL ?}
+ \end{raggedright}
+
+
+\raggedright
+\Large {Models are forms of description often adopted in software development. They are abstractions used to represent and communicate what is important, devoid of unnecessary detail, and to help developers deal with the complexity of the problem being investigated or the solution being developed.
+
+
+Modelling is used in other forms of design and engineering. For instance, architects develop different models of buildings – some addressing structures, others materials, others ergonomics, and so on. The same happens with modelling in software development: some models are used to capture properties of the problem domain, such as key elements of the business or how its processes work, while other models are used to consider different aspects of the software, such as how the code is divided up and organised, or how various elements of the software communicate and work together. Each model is an abstract representation of some view of the system, and such views may change as the development process unfolds.
+In software development, we build models from different perspectives. In particular, we can distinguish between the following modelling types.
+
+\\\textbf{Domain modelling }is concerned with understanding and modelling context information for a specific problem, independently of a decision to use a software system to deal with that problem. A domain model is a representation of the main concepts in the real-world problem context – for instance, a business under consideration. A domain model does not necessarily assume a software solution.
+
+\textbf{Specification modelling} assumes that a software system will deal with the need in context. A specification model represents software elements used in the software solution to a problem, and is mainly concerned with the definition, at a high level of abstraction, of the services provided by the software.
+
+\textbf{Design modelling } describes the software system itself, with the allocation of responsibilities to its various parts, and its behaviour and control flow.
+Domain modelling plays an important role in understanding the need in context, before suggesting any software solution. The important elements of the context, whether they are people, products, departments, sensors, alarms or operators, need to be identified. Only by understanding the need in context, and how, why and with what consequences that need changes, can a fit-for-purpose software solution be specified. However, modelling the domain may sometimes be unnecessary – for instance, when there is an accepted need for a well-defined software system to solve a well-understood problem. In such a case, modelling the domain would not bring much advantage.
+
+Domain and specification modelling may produce very similar models, but the interpretations of the models are different; the former types of model are about real-world entities, the latter are about software representations of those entities.}
+
+
+
+
+
+
+
+\end{document}
+
+
+=========================================================================
+collaboration diagram
+=========================================================================
+
+@startuml
+object "INFUSION SET" as ob
+object "bolus calaulator" as bc
+object "patient" as u
+object display {
+Displays details \n and \n Warnings
+}
+object BUTTON {
+ON /OFF
+} 
+
+object insulin_calculator {
+  shows how much 
+sugar that user have
+} 
+object "collecting blood" as gs
+object dose {
+BASAL DOSE 
+OR
+BOLOUS DOSE
+}
+object "calculating glucose " as g
+object  "insulin reservoir" as in
+u-|>BUTTON:1:switch on the button 
+BUTTON-|>display:2:insulin pump turned on\n
+display -d-|>insulin_calculator:5:calculating insulin
+
+dose-l-->in:7:loads sufficient amount of insullin dose into the reservoir
+in-u->ob:8:loads insulin \ninto the infusion set
+ob-u->u:9:injects insulin \nto the user
+g-l->insulin_calculator:4:sends sugar levels of patient\n to insulin calculator\n for calaulating insulin
+insulin_calculator-d->dose:6:preparing insulin dose
+
+gs-d->g:3:collecting blood sample\n and \n send it to glucose calculator
+bc-r->insulin_calculator:4:sends amount of food\n that patient eat
+@enduml
+==============================================================================
+use case diagram
+===================================================================
+@startuml
+title insulin pump usecase diagram
+left to right direction
+actor patient as u
+package insulin_pump {
+
+usecase warning as w
+usecase details as dt
+usecase calculating_bolous as cb
+usecase dose as d
+usecase basal_dose as bd
+usecase bolous_dose as bd1
+usecase display as dp
+
+usecase calculating_insulin as ci
+usecase insulin_reserviour as ir
+
+
+}
+package glucose_monitor{
+usecase calculating_glucose as cg
+usecase collecting_blood as cb1
+}
+bd-u.>d:<<extends>>
+bd1-u.>d:<<includes>>
+ci-u.>cb:<<includes>>
+package infusion_set{
+usecase cannula as cn
+usecase tube as tb
+}
+dt-d.w:<<extends>>
+cb1-u.>cg:<<includes>>
+dt-u..>dp:<<extends>>
+ci-d.>d:<<includes>>
+tb-d.>cn:<<includes>>
+d-d.>ir:<<includes>>
+u-u-cn
+u-d-dp
+ir-d-tb
+glucose_monitor-d--ci
+w-u.>d:<<extends>>
+u-d-cb1
+
+@enduml
